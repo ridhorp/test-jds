@@ -1,0 +1,4 @@
+auth-app/node_modules
+auth-app/.env
+fetch-app/node_modules
+fetch-app/.env
