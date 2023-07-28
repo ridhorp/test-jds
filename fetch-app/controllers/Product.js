@@ -1,5 +1,3 @@
-const Jwt = require("jsonwebtoken");
-
 // get products
 const getProducts = async (req, res) => {
   const response = await fetch(
@@ -7,42 +5,35 @@ const getProducts = async (req, res) => {
   );
   let dataProducts = await response.json();
 
-  // const USD_CURRENCY_CODE = "USD";
-  // const RUP_CURRENCY_CODE = "IDR";
-  // const accessKey = process.env.YOUR_API_ACCESS_KEY;
+  const USD_CURRENCY_CODE = "USD";
+  const RUP_CURRENCY_CODE = "IDR";
+  const accessKey = process.env.API_ACCESS_KEY;
 
-  // try {
-  //   const conversionResponse = await axios.get(
-  //     `https://free.currencyconverterapi.com/api/v7/convert?q=USD_IDR&compact=ultra&apiKey=${accessKey}`
-  //   );
+  try {
+    const conversionResponse = await axios.get(
+      `https://free.currencyconverterapi.com/api/v7/convert?q=USD_IDR&compact=ultra&apiKey=${accessKey}`
+    );
 
-  //   const conversionRate = conversionResponse.data["USD_IDR"];
-  //   const kursRupiahToUSD = conversionRate || 14000;
+    const conversionRate = conversionResponse.data["USD_IDR"];
+    const kursRupiahToUSD = conversionRate || 14000;
 
-  //   dataProducts = dataProducts.map((product) => {
-  //     product.price_rupiah = product.price * kursRupiahToUSD;
-  //     return product;
-  //   });
+    dataProducts = dataProducts.map((product) => {
+      priceIDR = product.price * kursRupiahToUSD;
+      return {
+        id: product.id,
+        createdAt: product.createdAt,
+        price: product.price,
+        price_idr: priceIDR,
+        department: product.department,
+        product: product.product,
+      };
+    });
 
-  //   res.status(200).json(dataProducts);
-  // } catch (error) {
-  //   console.error("Failed to convert currency:", error);
-  //   res.status(500).json({ msg: "Failed to convert currency" });
-  // }
-
-  const kursRupiahToUSD = 14000;
-
-  dataProducts = dataProducts.map((product) => {
-    priceIDR = product.price * kursRupiahToUSD;
-    return {
-      id: product.id,
-      createdAt: product.createdAt,
-      price: product.price,
-      price_idr: priceIDR,
-      department: product.department,
-      product: product.product,
-    };
-  });
+    res.status(200).json(dataProducts);
+  } catch (error) {
+    console.error("Failed to convert currency:", error);
+    res.status(500).json({ msg: "Failed to convert currency" });
+  }
 
   res.status(200).json(dataProducts);
 };
