@@ -5,8 +5,6 @@ const getProducts = async (req, res) => {
   );
   let dataProducts = await response.json();
 
-  const USD_CURRENCY_CODE = "USD";
-  const RUP_CURRENCY_CODE = "IDR";
   const accessKey = process.env.API_ACCESS_KEY;
 
   try {
