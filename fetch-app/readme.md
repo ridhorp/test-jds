@@ -2,7 +2,7 @@
 Fetch Product App
 
 # Deskripsi
-Aplikasi untuk service get data product.
+Aplikasi untuk service data product.
 
 # Fitur
 - Menyediakan layanan mengambil data dari 3rd api.
