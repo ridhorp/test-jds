@@ -13,3 +13,7 @@ Aplikasi untuk service autentikasi menyediakan layanan untuk mengelola pengguna 
 - Install dependensi dengan menjalankan perintah ``` npm install ``` di terminal.
 - Konfigurasikan lingkungan (environment) pada file .env sesuai dengan kebutuhan Anda.
 - Jalankan aplikasi dengan perintah ``` npm start ```
+- 
+# API
+Dokumentasi API cek link dibawah ini:
+https://documenter.getpostman.com/view/20508464/2s9XxsVbzX
