@@ -8,7 +8,6 @@ module.exports = async (req, res, next) => {
       return res.status(401).json({ msg: "unauthenticated" });
 
     let data = await response.json();
-    console.log(data);
     next();
   } catch (error) {
     return res.status(401).json({ msg: "unauthenticated" });
